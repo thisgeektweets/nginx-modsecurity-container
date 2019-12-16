@@ -69,6 +69,12 @@ RUN apt-get autoremove autoconf m4 gnupg2 ca-certificates lsb-release libtool bu
 RUN apt-get autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
+    
+###############################
+# Remove nginx user directive #
+###############################
+
+RUN sed -i.bak 's/^user/#user/' /etc/nginx/nginx.conf
 
 #################################
 # Test nginx config and restart #
